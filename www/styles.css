@@ -1,0 +1,51 @@
+#compare {
+  background-color: #90EE90;
+  margin-top: 10px;
+}
+
+#clear, #apply_filter {
+  display: inline-block;
+  vertical-align: top;
+  width: 45%;
+  align-self: auto;
+}
+
+#clear {
+  float: right;
+  background-color: red;
+}
+
+.rt-table {
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+h4 {
+  font-weight: bold;
+}
+
+div.well div.shiny-input-container {
+  margin-top: 25px;
+  padding: 10px;
+  border: 2px solid grey;
+  border-radius: 25px;
+}
+
+.btn-default {
+  border: 2px solid grey;
+  border-radius: 25px;
+}
+
+.btn-info {
+    color: #333;
+    background-color: #F5F5F5;
+    border-color: #F5F5F5;
+}
+
+.rt-search{
+align-self: flex-start;
+margin-top: 50px;
+margin-left: 10px;
+  
+}

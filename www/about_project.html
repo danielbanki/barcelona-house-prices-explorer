@@ -1,0 +1,58 @@
+<div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12">
+                        <div class="page-title">
+                            <h2>About this project</h2>
+                            <p>
+                              The purpose of this app is to make it easier for people to compare house price statistics of Barcelona neighbourhoods. In total, Barcelona has 10 districts (distritos) and 73 neighbourhoods (barrios). The level of analysis in this app is always the neighbourhood. 
+                            </p>
+                            <p>
+                              The data can be visualised in two ways. In the "Color map" tab, you can see a choropleth map based on the factor you choose (e.g., average selling price, average monthly rent). A choropleth map uses different shades of the same color to represent an aggregate summary of this factor. For example, a larger average selling price has a darker shade than a lower average selling price. 
+                              
+                            </p>
+                            <p>
+                              In the "Compare neighbourhoods" tab, you can filter and manually pick which neighbourhoods you are interested in. You can then generate a table that gives you some summary statistics about the selected neighbourhoods.
+                              
+                              
+                              
+                            </p>
+                            
+                            <h3>Data</h3>
+                            <p>
+                              The data for this project were manually collated from publicly available sources. I used <a href="https://www.bcn.cat/estadistica/castella/dades/timm/index.htm">this site</a> from the Barcelona City Council to find information (e.g., sales price, monthly rent) about the barrios (neighbourhoods) in Barcelona. I then combined various pieces of information to create new variables and added the neighbourhoods' shapefiles. The result of this somewhat messy process is a single file (available here), which I use as the only input for this Shiny app. </p>
+                              
+                              <p>
+                              
+                              My goal with this project was to build a basic Shiny app and to learn something interesting about topics I like - Barcelona and house prices. Although I try to use accurate numbers, it's possible (likely even) that some numbers you will see in this app are inaccurate, outdated, or suboptimally chosen. Just to give you an example: I collected sales and rent prices of used flats from 2019 - for no other reason that this was simpler than collecting and cleaning a richer data set. In other words, I focused on the technical aspects of the app, and not on the data. This means that those who primarily care about the data should not rely on this app but consult official sources instead.
+                            </p>
+                            
+                            <h3>Motivation</h3>
+                            
+                            I had two goals with this app. First, to build my first Shiny app and experiment with some technical things (e.g., adding custom CSS, creating a module, playing with reactivity) I haven't tried before.  Second, to learn something about Barcelona neighbourhoods and the local housing market.
+                            
+                            <h3>Corrections, comments</h3>
+                            <p>
+                              
+If you see mistakes or want to suggest changes, please create an issue on the source repository. Also, if you have any comments or ideas, please don't hesitate to get in touch. 
+                            </p>
+                            <h3>Acknowledgements, useful resources</h3>
+                            <p>
+                              First of all, I'm very grateful for the amazing work of all the people who created and contributed to Shiny and its surrounding packages. There are many great resources I used extensively, but there is one book in particular I especially enjoyed: <a href= "https://mastering-shiny.org/"> Mastering Shiny by Hadley Wickham</a>.
+                              First of all, this book--just like Hadley's other books--is extremely clearly written. It answered many of the questions I had when I started working on this app. But not only that: it also answered many of the questions I didn't even know I had. 
+                              
+                            </p>
+                            
+                            
+                            <div>
+                              <hr>
+  This app was created with R/Shiny. License: <a href="https://creativecommons.org/licenses/by-sa/4.0/"> CC-BY-SA</a>.
+  The source code can be found
+  <a href="https://github.com/danielbanki/bcn-vivienda-shiny">on GitHub.</a>
+</div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+           
+          
