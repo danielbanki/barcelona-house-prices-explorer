@@ -1,47 +1,12 @@
 ---
-title: "README"
-author: "Daniel Banki"
-date: "`r format(Sys.Date())`"
+
 output: github_document
 ---
 
-## To do
+# Overview
 
+This is the github repository of a simple Shiny app that makes it easier to visualise property prices in Barcelona.
 
-add license
+The app is available [here](https://danielbanki.shinyapps.io/barcelona-house-prices-explorer/).
 
-
-Clean up messages, etc. that were only added because of debugging
-
-
-
-refactor switch statements in server.r: filter_on_column - maybe extract switch statements to function?
-
-server.R legend endpoints are not ideal
-
-License in footer; view source code / github comment
-
-
-
-q3 button popover fix - after that remove individual functions in utils.r - I don't know why this happens
-
-Include data explanations on both pages
-
-For tabsets, is there a different namespace, or why did we get the id=map not found error in console?
-
-
-
-
-
-
-## Done
-
-Extract chloropleth into a function or a module so it can be reused for sale price, rent price, etc.
-
-Refactor sliderinputs so not all of them include the na.rm = true, etc.
-
-Maybe move tabsetpanel to main ui; put back function choropleth_tabpanels in utils.R
-
-clean up package mess
-
-About project: maybe define a template; repeat that a couple of times: motivation/data/contributions/acknowledgments/useful resources
+If you have any feedback or comments, please feel free to open an issue or reach out to me on [Twitter](https://twitter.com/banki_daniel).

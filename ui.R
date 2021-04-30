@@ -1,27 +1,23 @@
-# UI
-ui <- navbarPage(theme = shinytheme("flatly"),
-                 "Barcelona house prices explorer",
+
+ui <- navbarPage(
+  theme = shinytheme("flatly"),
+  "Barcelona house prices explorer",
   id = "nav",
   tabPanel(
     "About project",
-
-      includeHTML(paste0(here(), "/www/about_project.html"))
-  )
-  ,
-
-
+  includeHTML(paste0(here(), "/www/about_project.html"))
+  ),
   tabPanel(
     "Color maps",
-    tags$head(
-      # Include our custom CSS with a relative path
-      includeCSS(paste0(here(), "/www/styles.css"))
-    ),
+
     sidebarLayout(
       sidebarPanel(
         selectInput("info", "Based on which factor should we create the map?",
-          choices = list("Selling price" = "sales_price",
-                         "Rent" = "rent",
-                         "Number of flats" = "number_flats")
+          choices = list(
+            "Sales price" = "sales_price",
+            "Rent" = "rent",
+            "Number of flats" = "number_flats"
+          )
         ),
         tabsetPanel(
           id = "params",
@@ -35,13 +31,13 @@ ui <- navbarPage(theme = shinytheme("flatly"),
           choropleth_tabPanels(
             tabpanel_id = "sales_price",
             slider_id = "sales_slider",
-            slider_text = "Selling price",
+            slider_text = "Sales price (EUR)",
             df_column = "sale_price_flat"
           ),
           choropleth_tabPanels(
             tabpanel_id = "rent",
             slider_id = "rent_slider",
-            slider_text = "Monthly rent",
+            slider_text = "Monthly rent (EUR)",
             df_column = "rent_price_flat"
           )
         )
@@ -54,10 +50,10 @@ ui <- navbarPage(theme = shinytheme("flatly"),
   ),
   tabPanel(
     "Compare neighbourhoods",
-    # tags$head(
-    #   # Include our custom CSS with a relative path
-    #   includeCSS(paste0(here(), "/www/styles.css"))
-    # ),
+    tags$head(
+      includeCSS(paste0(here(), "/www/styles.css"))
+    ),
+    useShinyalert(),
     fixedRow(
       column(
         4,
@@ -71,11 +67,11 @@ ui <- navbarPage(theme = shinytheme("flatly"),
               sep = ""
             ))
           ),
-          sliderInput("rent_price_slider", "Choose rent range",
+          sliderInput("rent_price_slider", "Choose rent range (EUR)",
             min = 0, max = max(barrios_bcn$rent_price_flat, na.rm = TRUE),
             value = c(0, max(barrios_bcn$rent_price_flat, na.rm = TRUE))
           ),
-          sliderInput("sales_price_slider", "Choose sales price range",
+          sliderInput("sales_price_slider", "Choose sales price range (EUR)",
             min = 0, max = max(barrios_bcn$sale_price_flat, na.rm = TRUE),
             value = c(0, max(barrios_bcn$sale_price_flat, na.rm = TRUE))
           ),
@@ -98,13 +94,13 @@ ui <- navbarPage(theme = shinytheme("flatly"),
         wellPanel(
           tags$h4(
             "Step 3: Generate table",
-                  infoButton("step3"),
-                  infoText("step3",
-                           "Now that you have selected all the areas you want to compare, you are ready to generate your comparison table.")
-
-          # create_infoButton("step3", "test")
+            infoButton("step3"),
+            infoText(
+              "step3",
+              "Now that you have selected all the areas you want to compare, you are ready to generate your comparison table."
+            )
           ),
-          
+
           actionButton("compare", "Generate table ", width = "100%")
         )
       ),

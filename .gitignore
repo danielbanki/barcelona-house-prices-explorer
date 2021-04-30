@@ -2,4 +2,8 @@
 .Rhistory
 .RData
 .Ruserdata
+/misc
+/data
+/R_archive
 /rsconnect
+README.Rmd

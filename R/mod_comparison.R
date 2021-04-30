@@ -75,6 +75,13 @@ comparisonServer <- function(id, clicked, compare_button) {
       updateReactable("comparison_table", 
                       data = barrios_compared)
       
+      shinyalert("", "Great, we've just generated the table! Scroll down to see it.",
+                 type = "success",
+                 confirmButtonText = "Let's go", 
+                 size = "xs", 
+                 closeOnClickOutside = TRUE, 
+                 timer = 3000)
+      
     })
   })
 }

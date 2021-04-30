@@ -9,6 +9,7 @@ library(readr)
 library(sf)
 library(shinyBS)
 library(shinythemes)
+library(shinyalert)
 
 
 
@@ -16,9 +17,6 @@ library(shinythemes)
 
 barrios_bcn <- read_rds("2019-combined.RData")
 
-# --------------------------------------------
-# Round outputs -- could also be done in reactable; 
-# or in data import file
 
 barrios_bcn <- barrios_bcn %>% 
   mutate(sale_price_m2 = round(sale_price_m2, 0),
@@ -27,11 +25,6 @@ barrios_bcn <- barrios_bcn %>%
          percent_sold = round(percent_sold, 2),
          percent_rented = round(percent_rented, 2),
          sale_price_flat = sale_price_flat * 1000)
-
-
-
-
-
 
 
 # bounding box for BCN

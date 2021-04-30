@@ -1,4 +1,4 @@
-# SERVER ---------------------------------
+
 
 server <- function(input, output, session) {
 
@@ -7,7 +7,7 @@ server <- function(input, output, session) {
   # Color maps  ---------------------------------------------------------------------------------
 
 
-  # base map for parameter-based search
+  # base map for color maps
   output$map <- renderLeaflet({
     leaflet() %>%
       fitBounds(bbox_bcn[1], bbox_bcn[2], bbox_bcn[3], bbox_bcn[4]) %>%
@@ -15,7 +15,7 @@ server <- function(input, output, session) {
   })
 
 
-  # get reactive value as input that is visible
+  # reactive values for choropleths
 
   filter_on_column <- reactive({
     slider <- switch(input$info,
@@ -37,8 +37,8 @@ server <- function(input, output, session) {
     )
 
     legend_labels <- switch(input$info,
-      "sales_price" = "Sales price",
-      "rent" = "Rent",
+      "sales_price" = "Sales price (EUR)",
+      "rent" = "Rent (EUR)",
       "number_flats" = "Number of flats"
     )
 
@@ -51,8 +51,6 @@ server <- function(input, output, session) {
 
     return(output)
   })
-
-
 
 
 
@@ -77,12 +75,10 @@ server <- function(input, output, session) {
 
 
 
+  # update base map with the corresponding choropleth map
 
   observe({
-    proxy <- leafletProxy("map")
-
-
-    proxy %>%
+    leafletProxy("map") %>%
       clearShapes() %>%
       clearControls() %>%
       addPolygons(
@@ -106,7 +102,6 @@ server <- function(input, output, session) {
 
 
 
-
   observeEvent(input$info, {
     updateTabsetPanel(session, "params", selected = input$info)
   })
@@ -117,7 +112,7 @@ server <- function(input, output, session) {
 
   clickedIds <- reactiveValues(ids = vector())
 
-  # base map for barrio-based search
+  # base map
   output$map_barrio <- renderLeaflet({
     leaflet() %>%
       fitBounds(bbox_bcn[1], bbox_bcn[2], bbox_bcn[3], bbox_bcn[4]) %>%
@@ -140,16 +135,12 @@ server <- function(input, output, session) {
 
   # -------------------------------------------------------
 
+  # select and unselect neighbourhoods by single click in step 2
 
   observeEvent(input$map_barrio_shape_click, {
     click <- input$map_barrio_shape_click
 
-
-    proxy <- leafletProxy("map_barrio")
-
     clickedIds$ids <- c(clickedIds$ids, click$id)
-
-
 
     clickedPolys <- barrios_bcn %>% filter(Nom_Barri %in% clickedIds$ids)
 
@@ -163,6 +154,7 @@ server <- function(input, output, session) {
       clickedIds$ids <- clickedIds$ids[!clickedIds$ids %in% nameMatch]
 
 
+      proxy <- leafletProxy("map_barrio")
 
 
       proxy %>% removeShape(layerId = click$id)
@@ -180,10 +172,9 @@ server <- function(input, output, session) {
 
   # ------------------------------------------------------------------
 
-  # clear polygon selection on button click
+  # clear polygon selection on button click in step 1
 
   observeEvent(input$clear, {
-
     proxy <- leafletProxy("map_barrio")
 
     proxy %>% clearGroup("highlighted-polygons")
@@ -193,7 +184,7 @@ server <- function(input, output, session) {
 
   # ---------------------------------------------------------------------
 
-  # comparison table
+  # server side of the module that generates the table in step 3
 
   comparisonServer(
     "comp_table",
@@ -202,11 +193,9 @@ server <- function(input, output, session) {
   )
 
 
-
   # -----------------------------------------------
 
-  # start with filter + manually adjust; or just add manually
-
+  # reactive values for sliders in step 1
 
   rent_slider_polygon <- reactive({
     barrios_bcn <- barrios_bcn %>%
@@ -228,10 +217,11 @@ server <- function(input, output, session) {
 
 
 
+  # ----------------------------------------------
 
+  # show the results of the filtering in step 1
 
   observeEvent(input$apply_filter, {
-
     barrios_bcn <- dplyr::intersect(rent_slider_polygon(), sales_slider_polygon())
 
     if (nrow(barrios_bcn) != 0) {
@@ -253,7 +243,6 @@ server <- function(input, output, session) {
 
       # add those polygons that were filtered
       clickedIds$ids <- barrios_bcn$Nom_Barri
-
     } else {
       message("no barrios were selected")
     }
