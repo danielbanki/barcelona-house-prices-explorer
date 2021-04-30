@@ -78,7 +78,11 @@ server <- function(input, output, session) {
   # update base map with the corresponding choropleth map
 
   observe({
-    leafletProxy("map") %>%
+    
+    proxy <- leafletProxy("map")
+    
+    
+    proxy %>%
       clearShapes() %>%
       clearControls() %>%
       addPolygons(
@@ -139,6 +143,8 @@ server <- function(input, output, session) {
 
   observeEvent(input$map_barrio_shape_click, {
     click <- input$map_barrio_shape_click
+    
+    proxy <- leafletProxy("map_barrio")
 
     clickedIds$ids <- c(clickedIds$ids, click$id)
 
@@ -152,9 +158,6 @@ server <- function(input, output, session) {
       # remove the current click$id and its name match from the clickedPolys shapefile
       clickedIds$ids <- clickedIds$ids[!clickedIds$ids %in% click$id]
       clickedIds$ids <- clickedIds$ids[!clickedIds$ids %in% nameMatch]
-
-
-      proxy <- leafletProxy("map_barrio")
 
 
       proxy %>% removeShape(layerId = click$id)

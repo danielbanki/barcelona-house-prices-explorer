@@ -10,12 +10,13 @@ library(sf)
 library(shinyBS)
 library(shinythemes)
 library(shinyalert)
+library(here)
 
 
 
 
 
-barrios_bcn <- read_rds("2019-combined.RData")
+barrios_bcn <- read_rds(paste0(here(), "/data/2019-combined.RData"))
 
 
 barrios_bcn <- barrios_bcn %>% 
