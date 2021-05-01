@@ -4,7 +4,7 @@ ui <- navbarPage(
   "Barcelona house prices explorer",
   id = "nav",
   tabPanel(
-    "About project",
+    "About",
   includeHTML(paste0(here(), "/www/about_project.html"))
   ),
   tabPanel(
@@ -12,7 +12,7 @@ ui <- navbarPage(
 
     sidebarLayout(
       sidebarPanel(
-        selectInput("info", "Based on which factor should we create the map?",
+        selectInput("info", "Which variable should we use to create the map?",
           choices = list(
             "Sales price" = "sales_price",
             "Rent" = "rent",
@@ -61,7 +61,7 @@ ui <- navbarPage(
           tags$h4(
             "Step 1: Filter & highlight",
             create_infoButton("step1", paste(
-              "Use the sliders to select the range of rental and sales prices you are interested in. <br> <br>",
+              "(Optional step) Use the sliders to select the range of rental and sales prices you are interested in. <br> <br>",
               "The prices are average prices for a given area, not prices for individual properties. <br> <br>",
               "If you move both sliders, then an area will only be highlighted if its prices are within both slider ranges.",
               sep = ""
@@ -97,11 +97,11 @@ ui <- navbarPage(
             infoButton("step3"),
             infoText(
               "step3",
-              "Now that you have selected all the areas you want to compare, you are ready to generate your comparison table."
+              "Now that you have selected all the areas you want to compare, you are ready to generate the comparison table."
             )
           ),
 
-          actionButton("compare", "Generate table ", width = "100%")
+          actionButton("compare", "Let's go!", width = "100%")
         )
       ),
       column(
